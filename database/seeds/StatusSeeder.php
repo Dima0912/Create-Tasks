@@ -13,20 +13,19 @@ class StatusSeeder extends Seeder
     public function run()
     {
         DB::table('statuses')->insert([
-            'name' => 'to do',
+            ['name' => 'to do',
             'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
+            'updated_at' => 2021_12_12],
+
+            ['name' => 'in progres',
+            'created_at' => 2021_12_08,
+            'updated_at' => 2021_12_12],
+            
+            ['name' => 'done',
+            'created_at' => 2021_12_08,
+            'updated_at' => 2021_12_12],
         ]);
 
-        DB::table('statuses')->insert([
-            'name' => 'in progres',
-            'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
-        ]);
-        DB::table('statuses')->insert([
-            'name' => 'done',
-            'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
-        ]);
+        
 }
 }

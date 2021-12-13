@@ -13,24 +13,22 @@ class LabelsSeeder extends Seeder
     public function run()
     {
         DB::table('labels')->insert([
-            'name' => 'bug',
+            ['name' => 'bug',
             'color' => 'blue',
             'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
-        ]);
+            'updated_at' => 2021_12_13],
 
-        DB::table('labels')->insert([
-            'name' => 'feature',
+            ['name' => 'feature',
             'color' => 'black',
             'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
-        ]);
+            'updated_at' => 2021_12_13],
 
-        DB::table('labels')->insert([
-            'name' => 'urgent',
+            ['name' => 'urgent',
             'color' => 'green',
             'created_at' => 2021_12_08,
-            'updated_at' => 2021_12_12,
+            'updated_at' => 2021_12_13],
         ]);
+
+       
     }
 }
