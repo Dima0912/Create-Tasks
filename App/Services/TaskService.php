@@ -11,6 +11,7 @@ class TaskService implements TaskServiceInterface
 
     public static function update(Task $task, $id)
     {
+        dd($task);
         $task = Task::find($id);
 
         $task->title = 'Update title';

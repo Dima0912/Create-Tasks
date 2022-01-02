@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -66,9 +67,13 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        
+       
+       $task = \app('task');
+      
+       return $task->update('gfdkgjkfd', 'fdgfdg');
+       
     }
 
     /**
