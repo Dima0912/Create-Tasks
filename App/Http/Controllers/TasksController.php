@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
+    protected $tasks;
+    
+    protected $task;
+    public function __construct(TaskService $tasks)
+    {
+        $this->tasks = $tasks;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-       
+      
     }
 
     /**
@@ -24,7 +32,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        return 'Create';
+       
     }
 
     /**
@@ -57,7 +65,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'dfhgfh';
     }
 
     /**
@@ -67,13 +75,15 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    
+    public function update(TaskService $service, $id)
     {
        
-       $task = \app('task');
+// dd($service);
+
+return $service->update($id);
+ return redirect()->back()->with('status', 'Категория успешно удалена');
       
-       return $task->update('gfdkgjkfd', 'fdgfdg');
-       
     }
 
     /**

@@ -23,5 +23,7 @@ Route::name('users.')->group(function() {
     Route::delete('users/delete', 'UserController@delete')->name('delete');
 });
 
-
-  Route::resource('tasks', TasksController::class);
+Route::name('tasks.')->group(function() {
+Route::get('tasks/update/{id}', 'TasksController@update')->name('update');
+});
+  // Route::resource('tasks', TasksController::class);

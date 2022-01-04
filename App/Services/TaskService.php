@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Storage;
 class TaskService implements TaskServiceInterface
 {
 
-    public static function update(Task $task, $id)
+    public static function update($id)
     {
-        dd($task);
+        
         $task = Task::find($id);
 
-        $task->title = 'Update title';
+        $task->title = ' title';
         $task->content = 'Update content';
         $task->save();
         

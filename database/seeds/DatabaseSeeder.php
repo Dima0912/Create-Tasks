@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
            StatusSeeder::class, 
            LabelsSeeder::class,
+           TasksSeeder::class,
         ]);
         // $this->call(UsersTableSeeder::class);
     }

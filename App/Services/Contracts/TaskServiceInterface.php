@@ -6,6 +6,6 @@ use App\Models\Task;
 
 interface TaskServiceInterface
 {
-    public static function update(Task $task,$id);
+    public static function update($id);
 
 }
