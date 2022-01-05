@@ -81,8 +81,8 @@ class TasksController extends Controller
        
 // dd($service);
 
-return $service->update($id);
- return redirect()->back()->with('status', 'Категория успешно удалена');
+ if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
+ 
       
     }
 
