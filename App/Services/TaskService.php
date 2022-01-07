@@ -14,8 +14,8 @@ class TaskService implements TaskServiceInterface
         
         $task = Task::find($id);
 
-        $task->title = 'create title';
-        $task->content = 'create content';
+        $task->title = ' title';
+        $task->content = 'content';
         $task->save();
         
     }

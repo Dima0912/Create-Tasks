@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\TaskFacade;
 use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
@@ -81,7 +82,9 @@ class TasksController extends Controller
        
 // dd($service);
 
- if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
+//  if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
+
+$task = TaskFacade::update($id);
  
       
     }
