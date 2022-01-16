@@ -16,4 +16,9 @@ class Task extends Model
   {
       return $this->belongsToMany(Label::class);
   }
+
+  public function task_history()
+  {
+    return $this->hasMany(TaskHistory::class);
+  }
 }

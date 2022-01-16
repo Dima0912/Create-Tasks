@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Facades\TaskFacade;
 use App\Models\Task;
+use App\Models\TaskHistory;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\task;
+
 class TasksController extends Controller
 {
-    protected $tasks;
-    
-    protected $task;
-    public function __construct(TaskService $tasks)
-    {
-        $this->tasks = $tasks;
-    }
+    // protected $tasks;
+
+    // protected $task;
+    // public function __construct(TaskService $tasks)
+    // {
+    //     $this->tasks = $tasks;
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +26,6 @@ class TasksController extends Controller
      */
     public function index()
     {
-      
     }
 
     /**
@@ -33,7 +35,6 @@ class TasksController extends Controller
      */
     public function create()
     {
-       
     }
 
     /**
@@ -76,17 +77,27 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-    public function update(TaskService $service, $id)
+
+    public function update(TaskService $service, $id )
     {
+
+    
+        //    if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
        
-// dd($service);
+        // $task = TaskFacade::update($id);
 
-//  if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
+        // return view('task.update');
 
-$task = TaskFacade::update($id);
- 
-      
+        $task = Task::find($id);
+        $task->title = '39ы12314w';
+        $task->content = '31ы12134w';
+        $task->save();
+
+
+         $task = TaskService::create_history($task);
+   
+
+
     }
 
     /**
