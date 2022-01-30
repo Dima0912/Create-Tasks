@@ -16,13 +16,7 @@ use function GuzzleHttp\Promise\task;
 
 class TasksController extends Controller
 {
-    // protected $tasks;
-
-    // protected $task;
-    // public function __construct(TaskService $tasks)
-    // {
-    //     $this->tasks = $tasks;
-    // }
+    
     /**
      * Display a listing of the resource.
      *
@@ -39,11 +33,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        // $task = Task::all('title', 'content', 'id');
-        // 
-
         return view('tasks/new');
-        
     }
 
     /**
@@ -52,19 +42,18 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTaskRequest $request )
+    public function store(CreateTaskRequest $request)
     {
-       
-      
-       $task = new Task();
-       $task->title = $request->post('title');
-       $task->content = $request->post('content');
-       $task->creator_id = 1;
-       $task->status_id = 1;
-       $task->save();
-      
+
+
+        $task = new Task();
+        $task->title = $request->post('title');
+        $task->content = $request->post('content');
+        $task->creator_id = 1;
+        $task->status_id = 1;
+        $task->save();
+
         return redirect()->route('tasks.show')->with('status', 'Задача успешно создана');
-  
     }
 
     /**
@@ -75,8 +64,8 @@ class TasksController extends Controller
      */
     public function show(Task $task)
     {
-        
-      $task = Task::all();
+
+        $task = Task::all();
         return view('tasks/show', compact('task'));
     }
 
@@ -88,10 +77,9 @@ class TasksController extends Controller
      */
     public function edit(Task $task)
     {
-       
-       
+
+
         return view('tasks.edit', compact('task'));
-     
     }
 
     /**
@@ -105,9 +93,9 @@ class TasksController extends Controller
     public function update(UpdatetaskRequest $request, $id)
     {
 
-        $task=Task::find($id);
-        $task->title=$request->input('title');
-        $task->content=$request->input('content');
+        $task = Task::find($id);
+        $task->title = $request->input('title');
+        $task->content = $request->input('content');
         $task->save();
         $tasks = TaskHistoryService::create_history($task);
 
@@ -122,6 +110,5 @@ class TasksController extends Controller
      */
     public function destroy(Task $task)
     {
-        
     }
 }
