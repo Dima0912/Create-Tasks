@@ -2,13 +2,13 @@
 
 namespace App\Facades;
 
-use App\Services\TaskService;
+use App\Services\TaskHistoryService;
 use Illuminate\Support\Facades\Facade;
 
 class TaskFacade extends Facade
 {
 protected static function getFacadeAccessor()
 {
-    return TaskService::class;
+    return TaskHistoryService::class;
 }
 }

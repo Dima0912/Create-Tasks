@@ -7,14 +7,24 @@ use Shmop;
 
 class Task extends Model
 {
+  protected $fillable = [
+    'title',
+    'content',
+    'creator_id',
+    'status_id',
+   
+
+  ];
+  // public $timestamps = false;
+
   public function status()
   {
-      return $this->belongsTo(Status::class);
-  } 
-  
+    return $this->belongsTo(Status::class);
+  }
+
   public function labels()
   {
-      return $this->belongsToMany(Label::class);
+    return $this->belongsToMany(Label::class);
   }
 
   public function task_history()

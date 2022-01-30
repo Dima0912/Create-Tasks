@@ -8,7 +8,7 @@ use App\Services\Contracts\TaskServiceInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class TaskService implements TaskServiceInterface
+class TaskHistoryService implements TaskServiceInterface
 {
 
   public static function create_history(Task $task)
@@ -18,18 +18,16 @@ class TaskService implements TaskServiceInterface
       ->where('task_id', '=', $task->id)
       ->max('version');
      
-      
-    // dd($i);
+     
       $taska = new TaskHistory();
-      $taska->version = $maxVersion +1;
+      $taska->version = $maxVersion + 1;
     
       $taska->title = $task->title;
       $taska->content = $task->content;
       $taska->task_id = $task->id;
       $taska->save();
 
-   
+    //  return  TaskService::create_history($task);
   }
-}
 
-// for ($i = 0; $i < $lenght; $i++)
+}

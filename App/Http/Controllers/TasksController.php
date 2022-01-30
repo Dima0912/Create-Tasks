@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Facades\TaskFacade;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use App\Models\TaskHistory;
-use App\Services\TaskService;
+use App\Services\TaskHistoryService;
+use CreateTaskHistoriesTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function GuzzleHttp\Promise\task;
 
@@ -35,6 +39,11 @@ class TasksController extends Controller
      */
     public function create()
     {
+        // $task = Task::all('title', 'content', 'id');
+        // 
+
+        return view('tasks/new');
+        
     }
 
     /**
@@ -43,9 +52,19 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request )
     {
-        //
+       
+      
+       $task = new Task();
+       $task->title = $request->post('title');
+       $task->content = $request->post('content');
+       $task->creator_id = 1;
+       $task->status_id = 1;
+       $task->save();
+      
+        return redirect()->route('tasks.show')->with('status', 'Задача успешно создана');
+  
     }
 
     /**
@@ -54,9 +73,11 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        //
+        
+      $task = Task::all();
+        return view('tasks/show', compact('task'));
     }
 
     /**
@@ -65,9 +86,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        return 'dfhgfh';
+       
+       
+        return view('tasks.edit', compact('task'));
+     
     }
 
     /**
@@ -78,26 +102,16 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(TaskService $service, $id )
+    public function update(UpdatetaskRequest $request, $id)
     {
 
-    
-        //    if ($service->update($id)) return redirect()->back()->with('status', 'Обновлено');
-       
-        // $task = TaskFacade::update($id);
-
-        // return view('task.update');
-
-        $task = Task::find($id);
-        $task->title = '39ы12314w';
-        $task->content = '31ы12134w';
+        $task=Task::find($id);
+        $task->title=$request->input('title');
+        $task->content=$request->input('content');
         $task->save();
+        $tasks = TaskHistoryService::create_history($task);
 
-
-         $task = TaskService::create_history($task);
-   
-
-
+        return redirect()->route('tasks.show')->with('status', 'Категория обновлена');
     }
 
     /**
@@ -106,8 +120,8 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        
     }
 }

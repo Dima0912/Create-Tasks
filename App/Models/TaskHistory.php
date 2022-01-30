@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaskHistory extends Model
 {
-     protected $fillable = ['version', 'task_id', 'title', 'content'];
+    protected $fillable = [
+        'version',
+        'task_id',
+        'title',
+        'content'
+    ];
 
     public function status()
     {
@@ -22,5 +27,4 @@ class TaskHistory extends Model
     {
         return $this->belongsToMany(Label::class);
     }
-
 }
